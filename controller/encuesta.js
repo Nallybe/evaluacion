@@ -31,9 +31,10 @@ const postEncuesta = async (req,res) =>{
 const putEncuesta = async(req, res)=>{
     //Desestructuracion
     const { nombreEncuesta, fecha, documentoEncuestado, nombreEncuestado, edad, genero, empleado } = req.body
-    const encuesta = await Encuesta.findOneAndUpdate({nombreEncuesta: nombreEncuesta}, {fecha: fecha}, 
-        {documentoEncuestado: documentoEncuestado}, {nombreEncuestado: nombreEncuestado}, {edad:edad}, 
-        {genero: genero}, {empleado: empleado})
+    const encuesta = await Encuesta.findOneAndUpdate({nombreEncuesta: nombreEncuesta},//where
+        {fecha: fecha, 
+        documentoEncuestado: documentoEncuestado, nombreEncuestado: nombreEncuestado, edad:edad, 
+        genero: genero, empleado: empleado})
 
     res.json({
         msg: "PUT API Encuesta",
@@ -44,9 +45,10 @@ const putEncuesta = async(req, res)=>{
 //Modificaciones parciales
 const patchEncuesta = async(req,res)=>{
     const { nombreEncuesta, fecha, documentoEncuestado, genero, empleado} = req.body
-    const encuesta = await Encuesta.findOneAndUpdate({nombreEncuesta: nombreEncuesta}, {fecha: fecha}, 
-        {documentoEncuestado: documentoEncuestado}, 
-        {genero: genero}, {empleado: empleado})
+    const encuesta = await Encuesta.findOneAndUpdate({nombreEncuesta: nombreEncuesta}, //Were
+        {fecha: fecha, 
+        documentoEncuestado: documentoEncuestado, 
+        genero: genero, empleado: empleado})
 
     res.json({
         msg: "PATCH API Encuesta",
